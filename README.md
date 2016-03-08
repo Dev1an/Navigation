@@ -61,3 +61,40 @@ laptopAccessories.route('/macbook-pro', {name: 'MacBook Pro'})
 laptopAccessories.route('/macbook-air', {name: 'MacBook Air'})
 ```
 
+## Advanced API for fine grained control
+
+The `route` and `group` helpers on the `Menu` objects are nice and easy to use but if you want to have more control over your menu's and their coupling with FlowRouter routes, you may can also use the underlying API.
+
+### Manually adding menu items
+
+####Adding *route* items
+
+You can add a route as a menu item using `Menu.addItem(link[, title])`
+
+-   **link** *FlowRouter.Route* The route you want to add
+-   **title** *String* (optional) The title of your new menu item. If omitted the name of the route will be used
+
+Example:
+
+```javascript
+const mainMenu = new Menu()
+const homeRoute = FlowRouter.route('/')
+
+mainMenu.addItem(homeRoute, 'Home')
+```
+
+#### Adding submenus
+
+You can add a menu as an item of another menu using `Menu.addItem(link, title)`.
+
+-   **link** *Menu* The menu you want to add
+-   **title** *String* The title of your new menu item. If omitted the name of the route will be used
+
+Example:
+
+```javascript
+const mainMenu = new Menu()
+const subMenu = new Menu()
+
+mainMenu.addItem(subMenu, 'Products')
+```
