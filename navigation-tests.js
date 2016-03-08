@@ -3,7 +3,7 @@ import { Tinytest } from "meteor/tinytest";
 
 // Import and rename a variable exported by navigation.js.
 import {FlowRouter} from "meteor/kadira:flow-router"
-import Menu from "meteor/devian:navigation"
+import {Menu} from "meteor/devian:navigation"
 
 Tinytest.add('navigation - addItem registers a FlowRouter route', function (test) {
   const name = 'My Page'
