@@ -23,16 +23,16 @@ export class Menu {
     item(index) { return this._items[index] }
 
     group() {
-        const group = FlowRouter.group(...arguments)
-        group.options.menu = new Menu()
-        this.addItem(group.options.menu, group.options.name)
-        return group
+        const result = FlowRouter.group(...arguments)
+        result.options.menu = new Menu()
+        this.addItem(result.options.menu, result.options.name)
+        return result
     }
 
     route() {
-        const route = FlowRouter.route(...arguments)
-        this.addItem(route)
-        return route
+        const result = FlowRouter.route(...arguments)
+        this.addItem(result)
+        return result
     }
 }
 
