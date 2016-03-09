@@ -67,7 +67,7 @@ The `route` and `group` helpers on the `Menu` objects are nice and easy to use b
 
 ### Manually adding menu items
 
-####Adding *route* items
+#### Adding *route* items
 
 You can add a route as a menu item using `Menu.addItem(link[, title])`
 
