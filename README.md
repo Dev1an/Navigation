@@ -64,6 +64,32 @@ laptopAccessories.route('/macbook-pro', {name: 'MacBook Pro'})
 laptopAccessories.route('/macbook-air', {name: 'MacBook Air'})
 ```
 
+## Render using spacebars
+
+To render a menu in a UI, you can use the spacebars `#eachMenu` block tag, that's provided by this package.
+
+```html
+<body>{{> menuList mainMenu}}</body>
+
+<template name="menuList">
+    <ul>
+        {{#eachMenu items}}
+            <li>{{title}} {{#if isActive}}X{{/if}}:</li>
+            {{> menuList link}}
+        {{else}}
+            <li class="route">
+                {{title}}
+                {{#if isActive}}X{{/if}}
+            </li>
+        {{/eachMenu}}
+    </ul>
+</template>
+```
+
+`#eachMenu` works like the `#each` block but it separates submenu items form normal items.
+
+For each submenu in the list, the *main block* will be rendered. And for the normal menu items, the *else block*  will be rendered.
+
 ## Advanced API for fine grained control
 
 The `route` and `group` helpers on the `Menu` objects are nice and easy to use but if you want to have more control over your menu's and their coupling with FlowRouter routes, you may can also use the underlying API.
