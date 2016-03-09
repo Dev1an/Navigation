@@ -1,3 +1,5 @@
+Did you ever used [kadira's flowrouter](https://github.com/kadirahq/flow-router) for your app and wished it would have a feature to automatically generate menu bars based on your FlowRouter routes and groups? That's just what this package does.
+
 # Usage
 
 ## Installation
@@ -8,7 +10,7 @@ meteor add devian:navigation
 
 ## Create a menu
 
-To create a menu simply call `new Menu()`
+To create a menu, simply call `new Menu()`
 
 ```javascript
 import {Menu} from 'meteor/devian:navigation'
