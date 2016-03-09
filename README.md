@@ -16,7 +16,10 @@ import {Menu} from 'meteor/devian:navigation'
 const mainMenu = new Menu()
 ```
 
-A menu consists of menu-items. To get the list of items in a menu, call `Menu.items()`
+A menu consists of items. To get the list of items in a menu, call `Menu.items()`. Each item in this list has the following properties:
+
+-   `title` *String* The title of the menu
+-   `isActive()` *Boolean* A reactive function that returns a *Boolean* representing the current state of the item
 
 ### Add routes as menu items
 
