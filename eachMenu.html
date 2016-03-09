@@ -1,6 +1,6 @@
 <template name="eachMenu">
     {{#each item in this}}
-        {{#if isMenu item.link}}
+        {{#if isMenu item.menu}}
             {{> Template.contentBlock item}}
         {{else}}
             {{> Template.elseBlock item}}

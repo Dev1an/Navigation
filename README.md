@@ -73,10 +73,10 @@ An *Item* has the following structure:
 There are two types of items (they are subclasses of *Item*):
 
 -   *RouteItem* is an item that is coupled to a route. It extends *Item* with the following properties:
-    -   `link` *FlowRouter.Route* — the corresponding route
+    -   `route` *FlowRouter.Route* — the corresponding route
     -   `visit()` *void* — a method that will go to the corresponding route using `FlowRouter.go(…)`.
 -   *MenuItem* is an item that is coupled to to another *Menu*. You can think of this as a "submenu".
-    -   `link` *Menu* — the corresponding submenu
+    -   `menu` *Menu* — the corresponding submenu
 
 ## Render using spacebars
 

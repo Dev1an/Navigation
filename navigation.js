@@ -53,9 +53,8 @@ export class Menu {
 }
 
 class Item {
-    constructor(link, title) {
+    constructor(title) {
         check(title, String)
-        this.link = link
         this.title = title
         this.parentMenu = undefined
 
@@ -78,20 +77,22 @@ class Item {
 
 class RouteItem extends Item {
     constructor(route, title = route.options.name) {
+        super(title)
         check(route, FlowRouter.Route)
-        super(route, title)
+        this.route = route
 
         route._triggersEnter.push(() => this.enter())
         route._triggersExit.push(() => this.exit())
     }
 
-    visit() { FlowRouter.go(this.link.path) }
+    visit() { FlowRouter.go(this.route.path) }
 }
 
 class MenuItem extends Item {
     constructor(menu, title) {
+        super(title)
         check(menu, Menu)
-        super(menu, title)
+        this.menu = menu
         menu._coupledItems.push(this)
     }
 }
