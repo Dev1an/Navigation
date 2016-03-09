@@ -18,25 +18,20 @@ import {Menu} from 'meteor/devian:navigation'
 const mainMenu = new Menu()
 ```
 
-A menu consists of items. To get the list of items in a menu, call `Menu.items()`. Each item in this list has the following properties:
-
--   `title` *String* The title of the menu
--   `isActive()` *Boolean* A reactive function that returns a *Boolean* representing the current state of the item
-
 ### Add routes as menu items
 
-If you want to simultaneously define a route and add a corresponding menu item to your menu, use `Menu.route(...arguments)`. It works exactly the same as [FlowRouter.route(...arguments)](https://github.com/kadirahq/flow-router#routes-definition)
+If you want to simultaneously define a route and add a corresponding menu item to your menu, use `Menu.route(...)`. It works exactly the same as [FlowRouter.route(...)](https://github.com/kadirahq/flow-router#routes-definition)
 
 ```javascript
 mainMenu.route('/', {name: 'Home'})
 mainMenu.route('/about', {name: 'About us'})
 ```
 
-`Menu.route(...arguments)` returns a `FlowRouter.Route` object but it also creates a corresponding menu item and adds this item to the menu. Navigation uses the route names as title for the menu items.
+`Menu.route(...)` returns a *FlowRouter.Route* object but it also creates a corresponding menu item and adds this item to the menu. Navigation uses the route names as title for the menu items.
 
 ### Add groups as sub-menus 
 
-Just like creating items with the `Menu.route()` method you can create a sub menu with `Menu.group()`.
+Just like creating items with the `Menu.route(...)` method you can create a sub menu with `Menu.group(...)`.
 
 `Menu.group()` works the same as [FlowRouter.group()](https://github.com/kadirahq/flow-router#group-routes)
 
@@ -50,7 +45,7 @@ products.route('/iPodCase', {name: 'iPod Case'}})
 products.route('/iPhoneCase', {name: 'iPhone Case'}})
 ```
 
-In addition to creating and returning a `FlowRouter.Group`, `Menu.group()` creates a new `Menu` and adds it as a submenu.
+In addition to creating and returning a *FlowRouter.Group*, `Menu.group(...)` creates a new *Menu* and adds it as a submenu.
 
 Routes that are added to this group will trigger the creation of new menu-items that will be added to its corresponding submenu.
 
@@ -65,6 +60,23 @@ const laptopAccessories = products.group({
 laptopAccessories.route('/macbook-pro', {name: 'MacBook Pro'})
 laptopAccessories.route('/macbook-air', {name: 'MacBook Air'})
 ```
+
+### Retreive menu items
+
+A menu consists of items. To retrieve them: call `Menu.items()`. This returns a list of *Item* objects.
+
+An *Item* has the following structure:
+
+-   `title` *String* — the title of the menu
+-   `isActive()` *Boolean* — a reactive function that returns a *Boolean* representing the current state of the item
+
+There are two types of items (they are subclasses of *Item*), *RouteItem* and *MenuItem*
+
+-   *RouteItem* is an item that is coupled to a route. It extends *Item* with the following properties:
+    -   `link` *FlowRouter.Route* — the corresponding route
+    -   `visit()` *void* — a method that will go to the corresponding route using `FlowRouter.go(…)`.
+-   *MenuItem* is an item that is coupled to to another *Menu*. (You can think of this as a "submenu")
+    -   `link` *Menu* — the corresponding submenu
 
 ## Render using spacebars
 
