@@ -11,7 +11,7 @@ meteor add devian:navigation
 To create a menu simply call `new Menu()`
 
 ```javascript
-import {Menu} from 'meteor/navigation'
+import {Menu} from 'meteor/devian:navigation'
 
 const mainMenu = new Menu()
 ```
@@ -83,7 +83,7 @@ const homeRoute = FlowRouter.route('/')
 mainMenu.addItem(homeRoute, 'Home')
 ```
 
-#### Adding submenus
+#### Adding *submenus*
 
 You can add a menu as an item of another menu using `Menu.addItem(link, title)`.
 
