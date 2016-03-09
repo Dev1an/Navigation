@@ -88,7 +88,7 @@ mainMenu.addItem(homeRoute, 'Home')
 You can add a menu as an item of another menu using `Menu.addItem(link, title)`.
 
 -   **link** *Menu* The menu you want to add
--   **title** *String* The title of your new menu item. If omitted the name of the route will be used
+-   **title** *String* The title of your new menu item.
 
 Example:
 
