@@ -1,0 +1,9 @@
+<template name="eachMenu">
+    {{#each item in this}}
+        {{#if isMenu item.link}}
+            {{> Template.contentBlock item}}
+        {{else}}
+            {{> Template.elseBlock item}}
+        {{/if}}
+    {{/each}}
+</template>
