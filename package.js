@@ -2,7 +2,7 @@ Package.describe({
     name: 'devian:navigation',
     version: '0.0.3',
     // Brief, one-line summary of the package.
-    summary: 'Helps creating navigation-bars or menu-bars based on FlowRouter routes and groups',
+    summary: 'Helps creating navigation or menu bars based on FlowRouter routes and groups',
     // URL to the Git repository containing the source code for this package.
     git: 'https://github.com/Dev1an/Navigation.git',
     // By default, Meteor will default to using README.md for documentation.

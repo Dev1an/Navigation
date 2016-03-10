@@ -9,10 +9,15 @@ const Navigation = {
 export default Navigation
 
 export class Menu {
-    constructor() {
+    constructor({route} = {}) {
         this._items = []
         this._activeItems = 0
         this._coupledItems = []
+
+        if (route instanceof FlowRouter.Route) {
+            console.log('added route to menu', this)
+            this.route = route
+        }
     }
 
     addItem(link, title) {
@@ -73,6 +78,13 @@ class Item {
         if (this.parentMenu)
             this.parentMenu._decreaseActiveItems()
     }
+
+    visit() { FlowRouter.go(this.route.path) }
+
+    _coupleTriggers(route) {
+        route._triggersEnter.push(() => this.enter())
+        route._triggersExit.push(() => this.exit())
+    }
 }
 
 class RouteItem extends Item {
@@ -81,11 +93,8 @@ class RouteItem extends Item {
         check(route, FlowRouter.Route)
         this.route = route
 
-        route._triggersEnter.push(() => this.enter())
-        route._triggersExit.push(() => this.exit())
+        this._coupleTriggers(route)
     }
-
-    visit() { FlowRouter.go(this.route.path) }
 }
 
 class MenuItem extends Item {
@@ -93,11 +102,17 @@ class MenuItem extends Item {
         super(title)
         check(menu, Menu)
         this.menu = menu
+
+        if (menu.route instanceof FlowRouter.Route){
+            this.route = menu.route
+            this._coupleTriggers(this.route)
+        }
+
         menu._coupledItems.push(this)
     }
 }
 
-FlowRouter.onRouteRegister(addRouteToMenu)
+//FlowRouter.onRouteRegister(addRouteToMenu)
 function addRouteToMenu(routeInfo) {
     const route = FlowRouter._routes.find(route => route.pathDef == routeInfo.pathDef)
 
