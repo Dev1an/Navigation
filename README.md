@@ -61,6 +61,23 @@ laptopAccessories.route('/macbook-pro', {name: 'MacBook Pro'})
 laptopAccessories.route('/macbook-air', {name: 'MacBook Air'})
 ```
 
+### Submenu routes
+
+It is also possible to assign a route to a submenu. For example, consider the following menu structure:
+
+-   About
+-   Products
+    -   Product A
+    -   Product B
+
+You might want to assign a route to the *Products* menu item that leads you to some overview page with all your products. This can be achieved by adding the `menuRoute` property to the options object in a `FlowRouter.route()` call and setting it to true.
+
+```javascript
+laptopAccessories.route('/overview', {menuRoute: true})
+```
+
+Note that this only works when you add a route to a *FlowRouter.Group*
+
 ### Retreive menu items
 
 A menu consists of items. To retrieve them: call `Menu.items()`. This returns a list of *Item* objects.
@@ -140,4 +157,14 @@ const mainMenu = new Menu()
 const subMenu = new Menu()
 
 mainMenu.addItem(subMenu, 'Products')
+```
+##### Submenu routes
+
+To create a submenu with a route, supply the route as a property with key `route` to the first argument of the menu constructor.
+
+```javascript
+const myRoute = FlowRouter.route('/submenu/overview')
+const navigatableSubMenu = new Menu({
+  route: myRoute
+})
 ```

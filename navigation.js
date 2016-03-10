@@ -14,10 +14,8 @@ export class Menu {
         this._activeItems = 0
         this._coupledItems = []
 
-        if (route instanceof FlowRouter.Route) {
-            console.log('added route to menu', this)
+        if (route instanceof FlowRouter.Route)
             this.route = route
-        }
     }
 
     addItem(link, title) {
@@ -103,20 +101,29 @@ class MenuItem extends Item {
         check(menu, Menu)
         this.menu = menu
 
-        if (menu.route instanceof FlowRouter.Route){
-            this.route = menu.route
-            this._coupleTriggers(this.route)
-        }
+        if (menu.route instanceof FlowRouter.Route)
+            this._coupleRoute(menu.route)
 
         menu._coupledItems.push(this)
     }
+
+    _coupleRoute(route) {
+        this.route = route
+        this._coupleTriggers(this.route)
+    }
 }
 
-//FlowRouter.onRouteRegister(addRouteToMenu)
+FlowRouter.onRouteRegister(addRouteToMenu)
 function addRouteToMenu(routeInfo) {
     const route = FlowRouter._routes.find(route => route.pathDef == routeInfo.pathDef)
 
-    if (route.group != undefined){
+    if (route.options.menuRoute) {
+        createMenuForGroup(route.group)
+        route.group.options.menu.route = route
+        for (let item of route.group.options.menu._coupledItems)
+            item._coupleRoute(route)
+    }
+    else if (route.group != undefined){
         createMenuForGroup(route.group)
         route.group.options.menu.addItem(route)
     }
