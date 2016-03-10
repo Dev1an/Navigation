@@ -110,9 +110,9 @@ function addRouteToMenu(routeInfo) {
 function createMenuForGroup(group) {
     if (!(group.options.menu instanceof Menu)) {
         group.options.menu = new Menu()
-        if (group.parentMenu != undefined) {
-            createMenuForGroup(group.parentMenu)
-            group.parentMenu.options.menu.addItem(group.options.menu, group.options.name)
+        if (group.parent != undefined) {
+            createMenuForGroup(group.parent)
+            group.parent.options.menu.addItem(group.options.menu, group.options.name)
         }
     }
 }
