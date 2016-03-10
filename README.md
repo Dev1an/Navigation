@@ -1,4 +1,4 @@
-Did you ever use [kadira's flowrouter](https://github.com/kadirahq/flow-router) for your app and wished it would have a feature to automatically generate menu bars based on your FlowRouter routes and groups? That's just what this package does.
+Did you ever use [kadira's flowrouter](https://github.com/kadirahq/flow-router) for your app and wished it had a feature to automatically generate menu bars based on your FlowRouter routes and groups? That's just what this package does.
 
 # Usage
 
