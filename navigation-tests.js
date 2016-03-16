@@ -5,13 +5,16 @@ import { Tinytest } from "meteor/tinytest";
 import {FlowRouter} from "meteor/kadira:flow-router"
 import {Menu} from "meteor/devian:navigation"
 
-Tinytest.add('navigation - addItem registers a FlowRouter route', function (test) {
-  const name = 'My Page'
-  const myPageRoute = FlowRouter.route('/myPage', {name})
-  const mainMenu = new Menu()
+Tinytest.add('Core - Newly created menu has no items', function (test) {
+  const menu = new Menu()
 
-  mainMenu.addItem(myPageRoute)
-
-  test.equal(mainMenu.item(0).link,    myPageRoute)
-  test.equal(mainMenu.item(0).title, name)
+  test.equal(menu.items().length, 0)
 });
+
+Tinytest.add('Core - New menu with route, contains menu', function(test) {
+  const route = FlowRouter.route('/menu')
+  const menu = new Menu({route})
+
+  test.equal(menu.route, route)
+})
+

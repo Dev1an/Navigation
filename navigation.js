@@ -77,11 +77,18 @@ class Item {
             this.parentMenu._decreaseActiveItems()
     }
 
-    visit() { FlowRouter.go(this.route.path) }
+    visit() {
+        if (this.route instanceof FlowRouter.Route)
+            FlowRouter.go(this.route.path)
+        else
+            throw Meteor.Error('This menu item has no route')
+    }
 
     _coupleTriggers(route) {
-        route._triggersEnter.push(() => this.enter())
-        route._triggersExit.push(() => this.exit())
+        if (Meteor.isClient) {
+            route._triggersEnter.push(() => this.enter())
+            route._triggersExit.push(() => this.exit())
+        }
     }
 }
 
