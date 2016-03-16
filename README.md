@@ -99,7 +99,7 @@ There are two types of items (they are subclasses of *Item*):
 
 To render a menu in a UI, you can use the spacebars `#eachMenu` block tag, that's provided by this package.
 
-```html
+```handlebars
 <body>{{> menuList mainMenu}}</body>
 
 <template name="menuList">
