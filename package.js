@@ -11,7 +11,7 @@ Package.describe({
 Package.onUse(function(api) {
     api.versionsFrom('1.3-beta.16');
     api.use(['ecmascript', 'check', 'mongo', 'templating', 'reactive-var']);
-    api.use(['kadira:flow-router@2.10.1'])
+    api.use(['kadira:flow-router@2.11.0'])
     api.addFiles(['eachMenu.html', 'eachMenu.js'], 'client')
     api.mainModule('navigation.js');
 });
