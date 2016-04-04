@@ -9,7 +9,7 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-    api.versionsFrom('1.3-beta.16');
+    api.versionsFrom('1.3');
     api.use(['ecmascript', 'check', 'mongo', 'templating', 'reactive-var']);
     api.use(['kadira:flow-router@2.11.0'])
     api.addFiles(['eachMenu.html', 'eachMenu.js'], 'client')
@@ -17,8 +17,8 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-    api.use('ecmascript');
-    api.use('tinytest');
+    api.use(['ecmascript', 'dispatch:mocha-phantomjs@0.0.4', 'practicalmeteor:mocha@2.1.0_8', 'practicalmeteor:chai']);
     api.use('devian:navigation');
+
     api.mainModule('navigation-tests.js');
 });
