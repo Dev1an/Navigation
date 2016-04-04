@@ -7,4 +7,4 @@ dependencies:
     - npm install
 checkout:
   post:
-    - git submodule update --inite
+    - git submodule update --init
