@@ -94,7 +94,7 @@ class Item {
     }
 }
 
-class RouteItem extends Item {
+export class RouteItem extends Item {
     constructor(route, title = route.options.name) {
         super(title)
         check(route, FlowRouter.Route)
@@ -104,7 +104,7 @@ class RouteItem extends Item {
     }
 }
 
-class MenuItem extends Item {
+export class MenuItem extends Item {
     constructor(menu, title) {
         super(title)
         check(menu, Menu)
