@@ -28,7 +28,7 @@ export class Menu {
         item.parentMenu = this
     }
 
-    items()     { return this._items }
+    items()     { return this._items.slice(0) }
     item(index) { return this._items[index] }
 
     _increaseActiveItems() {
@@ -57,7 +57,7 @@ export class Menu {
 
 class Item {
     constructor(title) {
-        check(title, String)
+        check(title, Match.OneOf(String, Match.Where(x=> (typeof x == 'function') )))
         this.title = title
         this.parentMenu = undefined
 
@@ -78,11 +78,13 @@ class Item {
     }
 
     visit() {
-        if (this.route instanceof FlowRouter.Route)
+        if (this.hasRoute())
             FlowRouter.go(this.route.path)
         else
             throw Meteor.Error('This menu item has no route')
     }
+
+    hasRoute() {return this.route instanceof FlowRouter.Route}
 
     _coupleTriggers(route) {
         if (Meteor.isClient) {
