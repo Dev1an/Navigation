@@ -41,8 +41,8 @@ const products = mainMenu.group({
   name: 'Products'
 })
 
-products.route('/iPodCase', {name: 'iPod Case'}})
-products.route('/iPhoneCase', {name: 'iPhone Case'}})
+products.route('/iPodCase', {name: 'iPod Case'})
+products.route('/iPhoneCase', {name: 'iPhone Case'})
 ```
 
 In addition to creating and returning a *FlowRouter.Group*, `Menu.group(...)` creates a new *Menu* and adds it as a submenu.
@@ -92,7 +92,7 @@ There are two types of items (they are subclasses of *Item*):
 -   *RouteItem* is an item that is coupled to a route. It extends *Item* with the following properties:
     -   `route` *FlowRouter.Route* — the corresponding route
     -   `visit()` *void* — a method that will go to the corresponding route using `FlowRouter.go(…)`.
--   *MenuItem* is an item that is coupled to to another *Menu*. You can think of this as a "submenu".
+-   *MenuItem* is an item that is coupled to another *Menu*. You can think of this as a "submenu".
     -   `menu` *Menu* — the corresponding submenu
 
 ## Render using spacebars
